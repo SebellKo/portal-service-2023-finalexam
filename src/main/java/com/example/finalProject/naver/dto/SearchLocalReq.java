@@ -1,0 +1,30 @@
+package com.example.finalProject.naver.dto;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class SearchLocalReq { // api 요청 파라미터 변수
+
+    private String query = "";
+    private int display = 5;
+    private int start = 1;
+    private String sort = "random";
+
+    public MultiValueMap<String, String> toMultiValueMap() { // <key, value>
+        var map = new LinkedMultiValueMap<String, String>();
+
+        map.add("query", query);
+        map.add("display", String.valueOf(display));
+        map.add("start", String.valueOf(start));
+        map.add("sort", sort);
+
+        return map;
+    }
+}
